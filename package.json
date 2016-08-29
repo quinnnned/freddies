@@ -1,0 +1,25 @@
+{
+  "name": "freduce",
+  "version": "0.0.0",
+  "description": "Define complex functions as arrays of simple functions!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quinnnned/freduce.git"
+  },
+  "keywords": [
+    "functional",
+    "fp",
+    "reduce",
+    "compose"
+  ],
+  "author": "Quinn Edwards",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quinnnned/freduce/issues"
+  },
+  "homepage": "https://github.com/quinnnned/freduce#readme"
+}
