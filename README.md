@@ -1,2 +1,2 @@
 # freduce
-Define complex function as arrays of simple functions!
+Define complex functions as arrays of simple functions!
