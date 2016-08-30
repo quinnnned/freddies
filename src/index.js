@@ -1,28 +1,22 @@
-const freduce = () => console.log('huh????');
-
-export default freduce;
+const identity = (x) => (x);
 
 /**
- * Composes single-argument functions from right to left. The rightmost
- * function can take multiple arguments as it provides the signature for
- * the resulting composite function.
+ * freduce: Function Reducer
+ * 
+ * Composes from left-to-right, so d(c(b(a(x)))) is
+ * equivalent to freduce(a,b,c,d)(x)
  *
- * @param {...Function} funcs The functions to compose.
- * @returns {Function} A function obtained by composing the argument functions
- * from right to left. For example, compose(f, g, h) is identical to doing
- * (...args) => f(g(h(...args))).
+ * @param {...Function} A list of functions
+ * @returns {Function} A composite function
  */
+const freduce = (firstFunction, ...otherFunctions) => {
+    if (!firstFunction) return identity;
+    if (!otherFunctions.length) return firstFunction;
+    
+    return (...params) => otherFunctions.reduce(
+        (x, f) => f(x), 
+        firstFunction(...params)
+    );
+};
 
-// export default function compose(...funcs) {
-//   if (funcs.length === 0) {
-//     return arg => arg
-//   }
-
-//   if (funcs.length === 1) {
-//     return funcs[0]
-//   }
-
-//   const last = funcs[funcs.length - 1]
-//   const rest = funcs.slice(0, -1)
-//   return (...args) => rest.reduceRight((composed, f) => f(composed), last(...args))
-// }
+export default freduce;
