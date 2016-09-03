@@ -1,13 +1,15 @@
 {
   "name": "freduce",
-  "version": "0.0.4",
-  "description": "Define complex functions as arrays of simple functions!",
+  "version": "1.0.0",
+  "description": "The Zero-Dependency Left-To-Right Function Composer!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/quinnnned/freduce.git"
   },
   "keywords": [
     "functional",
+    "function",
+    "left-to-right",
     "fp",
     "reduce",
     "compose",
@@ -15,7 +17,8 @@
     "elm",
     "state",
     "reducer",
-    "monad"
+    "monad",
+    "freddy"
   ],
   "author": "Quinn Edwards",
   "license": "MIT",
@@ -30,8 +33,10 @@
   ],
   "scripts": {
     "clean": "rimraf lib",
+    "test": "cross-env BABEL_ENV=commonjs tape -r babel-register test/**/*.js | faucet",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
-    "prepublish": "npm run clean && npm run build && check-es3-syntax lib/ --kill --print"
+    "prepublish": "npm run clean && npm run test && npm run build && check-es3-syntax lib/ --kill --print",
+    "watch" : "watch 'npm run test' src test"
   },
   "devDependencies": {
     "babel-cli": "^6.3.15",
@@ -59,9 +64,12 @@
     "babel-plugin-transform-es3-member-expression-literals": "^6.5.0",
     "babel-plugin-transform-es3-property-literals": "^6.5.0",
     "babel-plugin-transform-object-rest-spread": "^6.3.13",
-    "babel-register": "^6.3.13",
+    "babel-register": "^6.14.0",
     "check-es3-syntax-cli": "^0.1.1",
     "cross-env": "^1.0.7",
-    "rimraf": "^2.3.4"
+    "faucet": "0.0.1",
+    "rimraf": "^2.3.4",
+    "tape": "^4.6.0",
+    "watch": "^0.19.2"
   }
 }
