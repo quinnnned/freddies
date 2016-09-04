@@ -28,7 +28,6 @@ const freduce = (first, ...rest) => {
 export const reducer = (previousResult, freddy) => {
     const f = freduce(freddy);
     if (isThenable(previousResult)) return previousResult.then(f);
-    
     return f(previousResult);
 };
 

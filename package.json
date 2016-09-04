@@ -1,10 +1,10 @@
 {
-  "name": "freduce",
+  "name": "freddies",
   "version": "1.0.0",
   "description": "The Zero-Dependency Left-To-Right Function Composer!",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/quinnnned/freduce.git"
+    "url": "git+https://github.com/quinnnned/freddies.git"
   },
   "keywords": [
     "functional",
@@ -23,9 +23,9 @@
   "author": "Quinn Edwards",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/quinnnned/freduce/issues"
+    "url": "https://github.com/quinnnned/freddies/issues"
   },
-  "homepage": "https://github.com/quinnnned/freduce#readme",
+  "homepage": "https://github.com/quinnnned/freddies#readme",
   "main": "lib/index.js",
   "files": [
     "lib",
