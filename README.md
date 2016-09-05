@@ -8,7 +8,7 @@ The Zero-Dependency Left-To-Right Function Composer!
 ## What's A "Freddy"?  
 That's a term I just made up for a process defined as array of functions! 
 
-...it also comes from "<u>F</u>unction-<u>Red</u>ucible Arra<u>y</u>"
+...it also comes from "__F__unction-__Red__ucible Arra__y__"
 
 ## Show Me!
 
