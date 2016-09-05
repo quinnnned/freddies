@@ -2,6 +2,8 @@
 The Zero-Dependency Left-To-Right Function Composer!
 
 [![Build Status](https://travis-ci.org/quinnnned/freddies.svg?branch=master)](https://travis-ci.org/quinnnned/freddies)
+[![npm version](https://img.shields.io/npm/v/freddies.svg?style=flat-square)](https://www.npmjs.com/package/freddies)
+
 
 
 ## What's A "Freddy"?  
