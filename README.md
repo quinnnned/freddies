@@ -1,6 +1,9 @@
 # freddies
 The Zero-Dependency Left-To-Right Function Composer!
 
+[![Build Status](https://travis-ci.org/quinnnned/freddies.svg?branch=master)](https://travis-ci.org/quinnnned/freddies)
+
+
 ## What's A "Freddy"?  
 That's a term I just made up for a process defined as array of functions! 
 
