@@ -33,11 +33,10 @@
   ],
   "scripts": {
     "clean": "rimraf lib",
-    "test-fancy": "npm test | faucet",
     "test": "cross-env BABEL_ENV=commonjs tape -r babel-register test/**/*.js",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "prepublish": "npm run clean && npm run test && npm run build && check-es3-syntax lib/ --kill --print",
-    "watch": "watch 'npm run test' src test"
+    "watch": "watch 'npm test | faucet' src test"
   },
   "devDependencies": {
     "babel-cli": "^6.3.15",

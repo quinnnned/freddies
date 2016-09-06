@@ -132,7 +132,7 @@ test("freddies supports thenables (promises)", (assert) => {
 });
 
 test('freddies with no parameters returns identity', (assert) => {
-  // Assert
+  // Arrange
   
   // Act
   const compositeFunction = freddies();
@@ -144,8 +144,44 @@ test('freddies with no parameters returns identity', (assert) => {
   assert.end();
 });
 
-test('freddies interprets non-function-non-array arguments as constant functions', (assert) => {
+test('freddy composes objects as branched functions', (assert) => {
+  // Arrange
+  const input = {a:1, b:'hello', c:true};
+  const objectFreddy = {
+    a: (x) => (x + 1), 
+    b: (x) => (x +' world'), 
+    c: (x) => (!x)
+  };
+  
+  // Act
+  const compositeFunction = freddies(objectFreddy);
+  const actual = compositeFunction(input);
+  const expected = {a:2, b:'hello world', c:false};
+  
   // Assert
+  assert.deepEqual(actual, expected);
+  assert.end();
+});
+
+test('object freddies compose as pure functions', (assert) => {
+
+  // Arrange
+  const freddy = {};
+  const input = {a:1, b:'hello', c:true};
+  
+  // Act
+  const compositeFunction = freddies(freddy);
+  const output = compositeFunction(input);
+  
+  // Assert
+  assert.isNot(output, input);
+  assert.deepEqual(output, input);
+  assert.end();
+});
+
+
+test('freddies interprets non-function-non-array-non-object arguments as constant functions', (assert) => {
+  // Arrange
   const aConstantValue = "a constant value";
   
   // Act
