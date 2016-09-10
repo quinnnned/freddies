@@ -29,17 +29,15 @@ export const functionize = (freddy) => {
     return composeMap(freddy);
 };
 
-export const composeMap = (freddyMap) => (input, ...rest) => {
-    const results = Object.keys(input).map( 
-        (inputKey) => ({
-            [inputKey]: functionize(freddyMap[inputKey])(input[inputKey], ...rest)
+export const composeMap = (freddyMap={}) => (input={}, ...rest) => (
+    Object.keys(freddyMap).map( 
+        (key) => ({
+            [key]: functionize(freddyMap[key])(input[key], ...rest)
         })
-    );
-    
-    // TODO: Check for thenables
-    
-    return results.reduce( (fused, shard) => Object.assign(fused, shard), {});
-};
+    ).reduce( (fused, shard) => Object.assign(fused, shard), 
+        Object.assign({}, input)
+    )
+);
 
 export const composeList = (freddyList) => {
     const [first, ...rest] = freddyList;

@@ -193,6 +193,39 @@ test('object freddies should pass all function parameters to each branch', (asse
   assert.end();
 });
 
+
+test('a branch of an object freddy should be executed, even if no input is supplied to that branch', (assert) => {
+    // Arrange
+    const input = {};
+    const freddy = { a: (x='foo') => x, b: (x=2) => x, c: (x=true) => x };
+    
+    // Act
+    const compositeFunction = freddies(freddy);
+    const actual = compositeFunction(input);
+    const expected = {a:'foo', b:2, c:true};
+    
+    // Assert
+    assert.deepEqual(actual, expected);
+    assert.end();
+});
+
+test('properties of freddy input objects that do not have branches in that freddy are passed through unchanged', (assert) => {
+    // Arrange
+    const emptyObject = {};
+    const input = {emptyObject, aBool: true, aString: 'aString'};
+    const freddy = {};
+    
+    // Act
+    const compositeFunction = freddies(freddy);
+    const actual = compositeFunction(input);
+    
+    // Assert
+    assert.equal(actual.emptyObject, input.emptyObject);
+    assert.equal(actual.aBool, input.aBool);
+    assert.equal(actual.aString, input.aString);
+    assert.end();
+});
+
 test('freddies interprets non-function-non-array-non-object arguments as constant functions', (assert) => {
   // Arrange
   const aConstantValue = "a constant value";
