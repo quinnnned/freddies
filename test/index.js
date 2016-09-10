@@ -58,7 +58,6 @@ test("freddies can accept multiple array arguments", (assert) => {
   assert.end();
 });
 
-
 test("freddies can accept mixed function and array arguments", (assert) => {
   
   // Arrange
@@ -77,7 +76,6 @@ test("freddies can accept mixed function and array arguments", (assert) => {
   assert.equal(actual, expected);
   assert.end();
 });
-
 
 test("freddies can accept arbitrarily nested array arguments", (assert) => {
   
@@ -179,6 +177,21 @@ test('object freddies compose as pure functions', (assert) => {
   assert.end();
 });
 
+test('object freddies should pass all function parameters to each branch', (assert) => {
+  // Arrange
+  const input = {a:'foo', b:'bar', c:'baz'};
+  const suffixer = (text, suffix) => text+suffix;
+  const freddy = {a:suffixer, b:suffixer, c:suffixer};
+  
+  // Act
+  const compositeFunction = freddies(freddy);
+  const actual = compositeFunction(input, '!');
+  const expected = {a:'foo!', b:'bar!', c:'baz!'};
+  
+  // Assert
+  assert.deepEqual(actual, expected);
+  assert.end();
+});
 
 test('freddies interprets non-function-non-array-non-object arguments as constant functions', (assert) => {
   // Arrange

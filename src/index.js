@@ -1,8 +1,8 @@
 const identity = (x) => (x);
 const always   = (x) => () => (x);
+
 const isFunction  = (f) => !!(f && f.constructor && f.call && f.apply);
 const isThenable  = (p) => (typeof p.then === 'function');
-const hasKeys     = (o) => !!(Object.keys(o).length);
 const isSimple    = (x) => (
     ( x === null)
     ||
@@ -14,15 +14,12 @@ const isSimple    = (x) => (
 );
 
 /**
- * freduce: Function Reducer
+ * freddies: Universal Function Composer
  * 
- * Composes from left-to-right, so d(c(b(a(x)))) is
- * equivalent to freduce(a,b,c,d)(x)
- *
- * @param {...Function} A list of functions
+ * @param {...Function} A list of freddies
  * @returns {Function} A composite function
  */
-const freduce = (...freddies) => composeList(freddies);
+const freddies = (...freddyList) => composeList(freddyList);
 
 export const functionize = (freddy) => {
     if (freddy === undefined)  return identity;
@@ -53,9 +50,9 @@ export const composeList = (freddyList) => {
 };
 
 export const reducer = (previousResult, freddy) => {
-    const f = freduce(freddy);
+    const f = functionize(freddy);
     if (isThenable(previousResult)) return previousResult.then(f);
     return f(previousResult);
 };
 
-export default freduce;
+export default freddies;
