@@ -1,16 +1,11 @@
-# freddies
-The Zero-Dependency Left-To-Right Function Composer!
+# to-fun
+Advanced Left-To-Right Function Composer
 
-[![Build Status](https://travis-ci.org/quinnnned/freddies.svg?branch=master)](https://travis-ci.org/quinnnned/freddies)
-[![npm version](https://img.shields.io/npm/v/freddies.svg?style=flat-square)](https://www.npmjs.com/package/freddies)
-[![Coverage Status](https://coveralls.io/repos/github/quinnnned/freddies/badge.svg?branch=master)](https://coveralls.io/github/quinnnned/freddies?branch=master)
+[![Build Status](https://travis-ci.org/quinnnned/to-fun.svg?branch=master)](https://travis-ci.org/quinnnned/to-fun)
+[![npm version](https://img.shields.io/npm/v/to-fun.svg?style=flat-square)](https://www.npmjs.com/package/to-fun)
+[![Coverage Status](https://coveralls.io/repos/github/quinnnned/to-fun/badge.svg?branch=master)](https://coveralls.io/github/quinnnned/to-fun?branch=master)
 
-## What's A "Freddy"?  
-That's a term I just made up for a process defined as array of functions! 
-
-...it also comes from **F**unction-**Red**ucible Arra**y**
-
-## Show Me!
+## Better Function Composition
 
 #### Don't Do This:
 ```js
@@ -26,24 +21,24 @@ const foo = doLastThing(
 
 #### Do This Instead!
 ```js
-// YES! Freddies are defined as ordered steps!
-const myFreddy = [
+// YES! Clear, Ordered Steps!
+const thingsToDo = [
     doFirstThing, 
     doSecondThing, 
     doThirdThing, 
     doLastThing
 ];
 
-// Freddy to function!
-const doSomeThings = f(myFreddy);
+// To Function!
+const doSomeThings = toFun(thingsToDo);
 
-// And done!
+// And Done!
 const foo = doSomeThings(a, b, c);
 ```
 
 #### Or Even Skip the Explicit Array Declaration!
 ```js
-const doSomeThings = f(
+const doSomeThings = toFun(
     doFirstThing, 
     doSecondThing, 
     doThirdThing, 
@@ -54,35 +49,35 @@ const foo = doSomeThings(a, b, c);
 ```
 
 #### Got An Async Process?
-Freddies understand promises!
+`to-fun` understands promises!
 
 ```js
 const findUserByName = (name) => { 
     return db.users.findOne({name}) 
 };
 
-const activateUser   = (user) => {
-    user.activated = true;
-    return user;
-};
+const activateUser = (user) => ({
+    ...user,
+    activated: true
+});
 
-// Freddy to function!
-const activateByName = f(findUserByName, activateUser, db.users.update);
+// To Function!
+const activateByName = toFun(findUserByName, activateUser, db.users.update);
 
 // Invoke and catch errors like usual
-activateByName('Fred').catch(errorHandler);
+activateByName('Jesse').catch(errorHandler);
 
 ```
 
 #### Got a Complex Multi-Stage Process?
-Freddies can contain other freddies!
+`to-fun` supports nested composition!
 ```js
 const access = [readSession, checkPermissions ]
 const sanitizeForm = [ sanitizeXss, sanitizeSqlInject ]
 const validateForm = [ checkNonce, validateComment]
 const clean  = [sanitizeForm, validateForm];
 // clearly-defined flow 
-on('add-comment', f(
+on('add-comment', toFun(
     access,
     clean,
     db.comments.insert,
@@ -96,15 +91,15 @@ on('add-comment', f(
 
 Installation (npm):
 ```
-npm install --save freddies
+npm install --save to-fun
 ```
 
 For the ```import```-ers:
 ```js
-import f from 'freddies';
+import f from 'to-fun';
 ```
 
 For the ```require```-ers:
 ```js
-var f = require('freddies').default;
+var f = require('to-fun').default;
 ```
